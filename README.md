@@ -34,7 +34,7 @@ To import the content types, perform the following steps:
 Here’s a brief overview of the content types required for this project.  
 -   **Product**: This content type lets you add the product content into your app.  
   
-Download All Content Types
+[Download All Content Types](https://github.com/contentstack/contentstack-reactnative-graphql-example/raw/master/ContentTypes.zip)
 
 Now that all the content types are ready, let’s add some content for your news app.
 
