@@ -1,4 +1,4 @@
-package com.contentstackgraphqlreactnative;
+package com.contentstackreactnative;
 
 import android.app.Application;
 

@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.contentstackgraphqlreactnative",
+    package = "com.contentstackreactnative",
 )
 
 android_resource(
     name = "res",
-    package = "com.contentstackgraphqlreactnative",
+    package = "com.contentstackreactnative",
     res = "src/main/res",
 )
 
