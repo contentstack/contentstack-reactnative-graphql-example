@@ -8,23 +8,41 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Scene, Router, ActionConst, Stack, Modal, Tabs, Actions}  from 'react-native-router-flux';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import apolloClient from './apollo';
+import {ApolloProvider} from 'react-apollo'
+import ListView from './ListView';
+import Products from './Products';
 
 type Props = {};
 export default class App extends Component<Props> {
+  state = {
+    client: null
+  }
+
+  componentDidMount () {
+    const client = apolloClient();
+    this.setState({
+      client
+    })
+  }
   render() {
-    return (
-      <View style={styles.container}>
+    if (this.state.client == null) {
+      return (<View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+        </View>);
+    }
+    return (
+      <ApolloProvider client = {this.state.client}>
+        <Router>
+          <Scene key = 'root' navigationBarStyle={{backgroundColor: "#e34950"}}>
+            <Scene key = 'Products' 
+              component = {Products}
+              title = 'Products'/>
+          </Scene>
+        </Router>
+      </ApolloProvider>
     );
   }
 }
