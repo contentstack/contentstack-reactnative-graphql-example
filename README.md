@@ -60,7 +60,7 @@ Create a file named `apollo.js` and export a funtion that accepts a token and re
 import { ApolloClient } from  'apollo-client';  
 import { HttpLink } from  'apollo-link-http';  
 import { InMemoryCache } from  'apollo-cache-inmemory';  
-const GRAPHQL_ENDPOINT = `https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name`;  
+const GRAPHQL_ENDPOINT = `https://graphql.contentstack.io/stacks/api_key?access_token=environment-specific_delivery_token&environment=environment_name`;  
   
 const apolloClient = () => {  
 	const link = new HttpLink({  
