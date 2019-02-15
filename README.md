@@ -1,20 +1,18 @@
 [![Contentstack](https://www.contentstack.com/docs/static/images/contentstack.png)](https://www.contentstack.com/)
 
-# Contentstack GraphQL with the Apollo Client React-Native
+# Build an example app using Contentstack React Native SDK, GraphQL API, and Apollo Client
+We have created a sample product catalog app that is built using Contentstack’s iOS SDK. The content of this app is powered by Contentstack GraphQL APIs, and the app uses Apollo client on the client side to consume GraphQL APIs.
 
-Apollo Client provides the best way to use GraphQL to build client applications as you can use it to quickly build a UI that fetches data with GraphQL, and you can use any JavaScript front-end.
-
-Using Apollo Boost you can easily configure Apollo Client with the recommended settings in your app. Apollo Boost includes packages that are essential for building an Apollo app.
+This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.
 
 | ![](https://github.com/contentstack/contentstack-reactnative-graphql-example/raw/master/iOS.png) |  ![](https://github.com/contentstack/contentstack-reactnative-graphql-example/raw/master/Android.png)|
 |--|--|
 
-
 ## Prerequisite
 
--  Use [Xcode 10.1 and later](https://developer.apple.com/xcode/)
--  Use Latest version of Android Studio (for Android)
--  React Native [setup](https://facebook.github.io/react-native/docs/getting-started.html)
+- Use [Xcode 10.1 and later](https://developer.apple.com/xcode/) Mac OS X 10.14 and later (for iOS)
+- Use Latest version of Android Studio (for Android)
+- React Native [setup](https://facebook.github.io/react-native/docs/getting-started.html)
 - [Contentstack](https://www.contentstack.com/) account
 
 ## Step 1: Create a stack
@@ -23,19 +21,19 @@ Log in to your Contentstack account and [create a new stack](https://www.content
 
 ## Step 2: Add a publishing environment
 
-[Add a publishing environment](https://www.contentstack.com/docs/guide/environments#add-an-environment) to publish your content in Contentstack. Provide the necessary details as per your requirement. Read more about [environments](https://www.contentstack.com/docs/guidtens).
+[Add a publishing environment](https://www.contentstack.com/docs/guide/environments#add-an-environment) to publish your content in Contentstack. Provide the necessary details as per your requirement. Read more about [environments](https://www.contentstack.com/docs/guide/environments).
 
 ## Step 3: Import content types
 For this app, we need one content type: Product Here’s what it is needed for:
 -   **Product**: Lets you add the product content into your app
 
-For quick integration, we have already created the content type. [Download the content types](https://github.com/contentstack/contentstack-reactnative-graphql-example/raw/master/ContentTypes.zip) and [import](https://www.contentstack.com/docs/guide/content-types#importing-a-content-type) it to your stack. (If needed, you can [create your own content types](https:/cs/guide/content-types#rting-a-content-type). Read more about [Content Types](https://www.contentstack.com/docs/guide/content-types)
+For quick integration, we have already created the content type. [Download the content types](https://github.com/contentstack/contentstack-reactnative-graphql-example/raw/master/ContentTypes.zip) and [import](https://www.contentstack.com/docs/guide/content-types#importing-a-content-type) it to your stack. (If needed, you can [create your own content types](https://www.contentstack.com/docs/guide/content-types#creating-a-content-type). Read more about [Content Types](https://www.contentstack.com/docs/guide/content-types)
 
-Now that all the content types arecredy, let’s add some content for your Product app.
+Now that all the content types are ready, let’s add some content for your Product app.
 
 ## Step 4: Add content
 
-[Create](https://www.contentstack.com/docs/guide/content-management#add-a-new-entry) and [publish](https://www.contentstack.com/docs/guide/content-management#publish-an-entry) entries for thereti-content type.
+[Create](https://www.contentstack.com/docs/guide/content-management#add-a-new-entry) and [publish](https://www.contentstack.com/docs/guide/content-management#publish-an-entry) entries for the 'Product' content type.
 
 Now that we have created the sample data, it’s time to use and configure the presentation layer.
 
@@ -55,12 +53,12 @@ $ npm install apollo-boost react-apollo graphql-tag graphql --save
 ```
 ## Step 7: Create Apollo Client
 
-Create a file named `apollo.js` and export a funtion that accepts a token and returns an instance of Apollo Client. You have to configure the Apollo client with the GraphQL endpoint and the token. (Replace with your own GraphQL endpoint)
+Create a file named `apollo.js` and export a function that accepts a token and returns an instance of Apollo Client. You have to configure the Apollo client with the GraphQL endpoint and the token. (Replace with your own GraphQL endpoint)
 ```
 import { ApolloClient } from  'apollo-client';  
 import { HttpLink } from  'apollo-link-http';  
 import { InMemoryCache } from  'apollo-cache-inmemory';  
-const GRAPHQL_ENDPOINT = `https://graphql.contentstack.io/stacks/api_key?access_token=environment-specific_delivery_token&environment=environment_name`;  
+const GRAPHQL_ENDPOINT = `https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name`;  
   
 const apolloClient = () => {  
 	const link = new HttpLink({  
@@ -144,3 +142,4 @@ export  default  class  Products  extends  React.Component  {
 ## Step 11: Build and run your application
 
 Now that we have a working project, you can build and run it.
+
