@@ -88,8 +88,7 @@ class GridItem extends React.PureComponent {
             borderRadius: 2}}>
             <Image
                 style={{alignContent:'center', flex:0.8, width: 170, height:170}}
-                source={{uri: item.featured_image[0].url,
-                        cache: 'only-if-cached'}}/>
+                source={{uri: item.featured_image[0].url}}/>
             <Text numberOfLines = {1} style= {{ flex:0.1,textAlignVertical: "center", textAlign: "center", fontSize: 15,}}>{item.title}</Text>
             <Text numberOfLines = {2} style= {{ flex:0.1,textAlignVertical: "center", textAlign: "center",fontSize: 12, alignContent: 'center'}}>${item.price}</Text>
             </View>
