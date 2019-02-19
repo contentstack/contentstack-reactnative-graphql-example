@@ -14,7 +14,7 @@ This document covers the steps to get this app up and running for you. Try out t
 - Use Latest version of Android Studio (for Android)
 - React Native [setup](https://facebook.github.io/react-native/docs/getting-started.html)
 - [Contentstack](https://www.contentstack.com/) account
-
+- [Basic knowledge of Contentstack](https://www.contentstack.com/docs/)
 ## Step 1: Create a stack
 
 Log in to your Contentstack account and [create a new stack](https://www.contentstack.com/docs/guide/stack#create-a-new-stack). Read more about [stacks](https://www.contentstack.com/docs/guide/stack).
