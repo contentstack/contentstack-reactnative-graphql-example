@@ -43,6 +43,8 @@ To get your app up and running quickly, we have created a sample React Native ap
 ```
 $ git clone https://github.com/contentstack/contentstack-reactnative-graphql-example.git
 ```
+
+Once you have downloaded the project, add your Contentstack API Key, Delivery Token, and Environment to the project during the SDK initialization step. (Learn how to find your Stack's [API Key and Delivery Token](https://www.contentstack.com/docs/guide/stack#edit-a-stack).
 ## Step 6: Install the Apollo Framework
 Using Apollo Boost you can easily configure Apollo Client with the recommended settings in your app. 
 
