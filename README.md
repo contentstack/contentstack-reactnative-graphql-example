@@ -145,6 +145,6 @@ Now that we have a working project, you can build and run it.
 
 ## More Resources
 - [Getting started with React Native SDK](https://www.contentstack.com/docs/platforms/react-native)
-- [Using GraphQL queries with React Native SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-contentstack-react-native-sdk)
+- [Using GraphQL queries with Apollo client React Native SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-contentstack-react-native-sdk)
 - [GraphQL API documentation](https://www.contentstack.com/docs/apis/graphql-content-delivery-api/)
 
