@@ -1,7 +1,7 @@
 [![Contentstack](https://www.contentstack.com/docs/static/images/contentstack.png)](https://www.contentstack.com/)
 
-# Build an example app using Contentstack React Native SDK, GraphQL API, and Apollo Client
-We have created a sample product catalog app that is built using Contentstack’s iOS SDK. The content of this app is powered by Contentstack GraphQL APIs, and the app uses Apollo client on the client side to consume GraphQL APIs.
+# Build an example app using Contentstack GraphQL API, and Apollo Client
+We have created a sample product catalog app that is built using Apollo Client SDK. The content of this app is powered by Contentstack GraphQL APIs, and the app uses Apollo client on the client side to consume GraphQL APIs.
 
 This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.
 
@@ -14,7 +14,7 @@ This document covers the steps to get this app up and running for you. Try out t
 - Use Latest version of Android Studio (for Android)
 - React Native [setup](https://facebook.github.io/react-native/docs/getting-started.html)
 - [Contentstack](https://www.contentstack.com/) account
-
+- [Basic knowledge of Contentstack](https://www.contentstack.com/docs/)
 ## Step 1: Create a stack
 
 Log in to your Contentstack account and [create a new stack](https://www.contentstack.com/docs/guide/stack#create-a-new-stack). Read more about [stacks](https://www.contentstack.com/docs/guide/stack).
@@ -43,6 +43,8 @@ To get your app up and running quickly, we have created a sample React Native ap
 ```
 $ git clone https://github.com/contentstack/contentstack-reactnative-graphql-example.git
 ```
+
+Once you have downloaded the project, add your Contentstack API Key, Delivery Token, and Environment to the project during the SDK initialization step. (Learn how to find your Stack's [API Key and Delivery Token](https://www.contentstack.com/docs/guide/stack#edit-a-stack).
 ## Step 6: Install the Apollo Framework
 Using Apollo Boost you can easily configure Apollo Client with the recommended settings in your app. 
 
@@ -115,8 +117,8 @@ Contentstack provides a GraphQL playground, which is a GraphiQL interface, to te
 
 Open a browser of your choice and hit the URL given below:
 ```
-https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name
-  ```
+https://www.contentstack.com/docs/apis/graphql-content-delivery-api/explorer/
+```
 
 **Note**: If you have pieces of data you may want to reuse in multiple places, make use of fragments. Refer the [Using fragments](https://www.apollographql.com/docs/ios/fragments.html) doc for more details.
     
@@ -178,6 +180,6 @@ Now that we have a working project, you can build and run it.
 
 ## More Resources
 - [Getting started with React Native SDK](https://www.contentstack.com/docs/platforms/react-native)
-- [Using GraphQL queries with React Native SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-contentstack-react-native-sdk)
+- [Using GraphQL queries with Apollo client React Native SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-apollo-client-react-native-sdk)
 - [GraphQL API documentation](https://www.contentstack.com/docs/apis/graphql-content-delivery-api/)
 
