@@ -10,7 +10,7 @@ This document covers the steps to get this app up and running for you. Try out t
 
 ## Prerequisite
 
-- Use [Xcode 10.1 and later](https://developer.apple.com/xcode/) Mac OS X 10.14 and later (for iOS)
+- Use [Xcode 11.1 and later](https://developer.apple.com/xcode/) Mac OS X 10.15 and later (for iOS)
 - Use Latest version of Android Studio (for Android)
 - React Native [setup](https://facebook.github.io/react-native/docs/getting-started.html)
 - [Contentstack](https://www.contentstack.com/) account
@@ -51,38 +51,66 @@ Using Apollo Boost you can easily configure Apollo Client with the recommended s
 Let's create a React-Native application, and use Apollo Boost to include packages that are essential for building the Apollo app.
 ```
 $ react-native init ProductList
-$ npm install apollo-boost react-apollo graphql-tag graphql --save
+$ npm install @apollo/client react-apollo graphql --save
 ```
 ## Step 7: Create Apollo Client
 
 Create a file named `apollo.js` and export a function that accepts a token and returns an instance of Apollo Client. You have to configure the Apollo client with the GraphQL endpoint and the token. (Replace with your own GraphQL endpoint)
 ```
-import { ApolloClient } from  'apollo-client';  
-import { HttpLink } from  'apollo-link-http';  
-import { InMemoryCache } from  'apollo-cache-inmemory';  
-const GRAPHQL_ENDPOINT = `https://graphql.contentstack.io/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>`;  
-  
-const apolloClient = () => {  
-	const link = new HttpLink({  
-		uri: GRAPHQL_ENDPOINT  
-	});  
-}  
-export  default apolloClient;
+import {ApolloClient, InMemoryCache, from, HttpLink} from '@apollo/client';
+
+const GRAPHQL_ENDPOINT =
+  'https://graphql.contentstack.com/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>';
+
+const apolloClient = () => {
+  const link = new HttpLink({
+    uri: GRAPHQL_ENDPOINT,
+    headers: {
+      access_token: '<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>',
+    },
+  });
+
+  return new ApolloClient({
+    link: from([link]),
+    cache: new InMemoryCache(),
+  });
+};
+export default apolloClient;
 ```
 ## Step 8: Connect your client to React
 
 To connect Apollo Client to React, you need to use the `ApolloProvider` component exported from `react-apollo`. The `ApolloProvider` component wraps your React app and places the client on the context, which allows you to access it from anywhere in your component tree.
 ```
-import {ApolloProvider} from  'react-apollo'  
-export  default  class App extends Component<{}> {  
-	render() {  
-		return (  
-			<ApolloProvider client = {this.state.client}>  
-			<Grid>  
-			</ApolloProvider>  
-		);  
-	}  
+import React, {Component} from 'react';
+import {Router, Scene} from 'react-native-router-flux';
+import apolloClient from './apollo';
+import {ApolloProvider} from 'react-apollo';
+import Products from './Products';
+
+class App extends Component {
+  state = {
+    client: apolloClient(),
+  };
+
+  render() {
+    return (
+      <ApolloProvider client={this.state.client}>
+        <Router>
+          <Scene key="root">
+            <Scene
+              key="Products"
+              component={Products}
+              title="Products"
+              initial={true}
+            />
+          </Scene>
+        </Router>
+      </ApolloProvider>
+    );
+  }
 }
+
+export default App;
 ```
 ## Step 9: Write GraphQL queries
 Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. Use this interface to write and test your queries.
@@ -100,21 +128,26 @@ Once you have set up `ApolloProvider` while connecting your client to React, you
 
 Create the `FETCH_ALL_PRODUCT` component in `index.js`, add the following code snippet, and run it to see the `Query` component in action!
 ```
-import {Query} from  'react-apollo';  
-import gql from  'graphql-tag';  
+import {Query} from 'react-apollo';
+import {gql} from '@apollo/client';
   
-const FETCH_ALL_PRODUCT = gql `query {  
-	all_product(locale:"en-us") {  
-		items {  
-			title  
-			description  
-			price  
-			featured_image {  
-				url  	
-			}  
-		}  
-	}  
-}  
+const FETCH_ALL_PRODUCT = gql `
+query {
+  all_product(locale: "en-us") {
+    items {
+      title
+      description
+      price
+      featured_imageConnection(limit: 10) {
+        edges {
+          node {
+            url
+          }
+        }
+      }
+    }
+  }
+}
 `;  
   
 export  default  class  Products  extends  React.Component  {  
