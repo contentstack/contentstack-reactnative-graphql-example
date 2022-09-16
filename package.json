@@ -18,7 +18,7 @@
     "react-native": "0.63.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-gridview": "^0.1.2",
-    "react-native-reanimated": "^1.9.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-router-flux": "^4.2.0",
     "react-native-screens": "^2.9.0"
   },
