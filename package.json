@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@apollo/client": "^3.0.2",
+    "@apollo/client": "^3.6.8",
     "apollo-client": "^2.6.10",
     "graphql": "^15.3.0",
     "react": "16.13.1",
